@@ -1,8 +1,19 @@
 import Hero from "~/common/components/hero";
 import PortfolioCard from "../components/portfolio-card";
 import IntroductionCard from "~/features/introduction/components/introduction-card";
-import { User, Cake, School, Mail, PhoneIcon } from "lucide-react";
+import {
+  Home,
+  User,
+  Cake,
+  School,
+  Mail,
+  PhoneIcon,
+  LinkIcon,
+} from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+
 import WrapperContainer from "~/common/components/wrapper-container";
+import { SiVelog } from "react-icons/si";
 export default function Portfolio() {
   const userInfomation = [
     {
@@ -21,9 +32,20 @@ export default function Portfolio() {
       description: "부경대학교\n자원경제학부 졸업",
     },
     {
-      icon: Cake,
-      title: "생년월일",
-      description: "1993.08.25",
+      icon: Home,
+      title: "홈페이지",
+      link: [
+        {
+          linkIcon: FaGithub,
+          linkName: "깃허브",
+          linkPath: "https://github.com/genre0928",
+        },
+        {
+          linkIcon: SiVelog,
+          linkName: "벨로그",
+          linkPath: "https://velog.io/@sseunu",
+        },
+      ],
     },
     {
       icon: Mail,
@@ -37,17 +59,18 @@ export default function Portfolio() {
     },
   ];
   return (
-    <div className="bg-mauve-800 h-96 pt-12">
+    <div className="bg-mauve-800 h-[80vh] pt-12">
       <WrapperContainer>
         <div className="space-y-5">
-          <Hero title="About me" />
-          <div className="grid grid-cols-2 gap-y-3 gap-x-1 justify-items-center">
+          <Hero icon={LinkIcon} title="About me" />
+          <div className="grid grid-cols-2 gap-y-3 gap-x-5 justify-items-center">
             {userInfomation.map((info) => {
               return (
                 <IntroductionCard
                   icon={info.icon}
                   title={info.title}
                   description={info.description}
+                  link={info.link}
                 />
               );
             })}
